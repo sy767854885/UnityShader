@@ -8,3 +8,6 @@ UnityShader/Logs/
 UnityShader/Library/
 UnityShader/.vsconfig
 UnityShader/Temp/
+*.cache
+UnityShader/Assembly-CSharp.csproj
+UnityShader/.vs/
