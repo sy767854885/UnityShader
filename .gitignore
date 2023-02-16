@@ -1,0 +1,10 @@
+*.asset
+*.settings
+*.dwlt
+UnityShader/UnityShader.sln
+*.gbc
+*.obj
+UnityShader/Logs/
+UnityShader/Library/
+UnityShader/.vsconfig
+UnityShader/Temp/
