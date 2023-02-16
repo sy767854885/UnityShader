@@ -19,7 +19,7 @@ Shader "CS0102/02_Texturing"
 
         Pass
         {
-            Cull Off
+            Cull Back
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
