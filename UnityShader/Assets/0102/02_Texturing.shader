@@ -55,7 +55,7 @@ Shader "CS0102/02_Texturing"
                 o.pos = UnityObjectToClipPos(v.vertex);
                 //o.pos = pos_clip;
                 o.uv = v.uv * _MainTex_ST.xy + _MainTex_ST.zw;
-                o.pos_uv = v.vertex.zy * _MainTex_ST.xy + _MainTex_ST.zw;
+                o.pos_uv = v.vertex.xz * _MainTex_ST.xy + _MainTex_ST.zw;
                 return o;
             }
 
