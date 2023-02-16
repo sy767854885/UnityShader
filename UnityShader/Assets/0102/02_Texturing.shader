@@ -49,13 +49,13 @@ Shader "CS0102/02_Texturing"
             v2f vert(appdata v)
             {
                 v2f o;
-                //float4 pos_world = mul(unity_ObjectToWorld,v.vertex);//模型空间转世界空间
-                //float4 pos_view = mul(UNITY_MATRIX_V,pos_world);//世界空间转相机空间
-                //float4 pos_clip = mul(UNITY_MATRIX_P,pos_view);//转到裁剪空间
-                o.pos = UnityObjectToClipPos(v.vertex);
-                //o.pos = pos_clip;
+                float4 pos_world = mul(unity_ObjectToWorld,v.vertex);//模型空间转世界空间
+                float4 pos_view = mul(UNITY_MATRIX_V,pos_world);//世界空间转相机空间
+                float4 pos_clip = mul(UNITY_MATRIX_P,pos_view);//转到裁剪空间
+                //o.pos = UnityObjectToClipPos(v.vertex);
+                o.pos = pos_clip;
                 o.uv = v.uv * _MainTex_ST.xy + _MainTex_ST.zw;
-                o.pos_uv = v.vertex.xz * _MainTex_ST.xy + _MainTex_ST.zw;
+                o.pos_uv = pos_world.xz * _MainTex_ST.xy + _MainTex_ST.zw;
                 return o;
             }
 
