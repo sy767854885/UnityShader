@@ -5,8 +5,10 @@ Shader "CS0102/03_Clip"
     Properties
     {
         _MainTex ("Texture", 2D) = "" {}
+        _MainColor("MainColor",Color) = (1,1,1,1)
         _Cutout("Cutout",Range(-0.1,1.1)) = 0.0
         _Speed("Speed",Vector) = (1,1,0,0)
+        _NoiseTex("Noise Tex",2D) = "white"{}
         //_Float("Float",Float) = 0.0
         //_Range("Range",Range(0.0,1.0)) = 0.0
         //_Vector("Vector",Vector) = (1,1,1,1)
@@ -49,6 +51,9 @@ Shader "CS0102/03_Clip"
             float4 _MainTex_ST;
             float _Cutout;
             float4 _Speed;
+            sampler2D _NoiseTex;
+            float4 _NoiseTex_ST;
+            float4 _MainColor;
             //顶点shader
             v2f vert(appdata v)
             {
@@ -66,8 +71,10 @@ Shader "CS0102/03_Clip"
             float4 frag(v2f i) : SV_Target
             {
                 half gradient = tex2D(_MainTex,i.uv + _Time.y * _Speed.xy).r;
-                clip(gradient - _Cutout);
-                return gradient.xxxx;
+                half noise = tex2D(_NoiseTex,i.uv + _Time.y * _Speed.zw).r;
+                clip(gradient - noise - _Cutout);
+                return _MainColor;
+                //return noise.xxxx;
                 //return float4(i.uv,0.0,0.0);
             }
             ENDCG //Shader代码从这里结束
