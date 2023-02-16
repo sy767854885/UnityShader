@@ -39,6 +39,7 @@ Shader "CS0102/02_Texturing"
             {
                 float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;//Í¨ÓÃ´¢´æÆ÷ ²åÖµÆ÷
+                float2 pos_uv : TEXCOORD1;
             };
 
             float4 _Color;
@@ -54,12 +55,13 @@ Shader "CS0102/02_Texturing"
                 o.pos = UnityObjectToClipPos(v.vertex);
                 //o.pos = pos_clip;
                 o.uv = v.uv * _MainTex_ST.xy + _MainTex_ST.zw;
+                o.pos_uv = v.vertex.xy * _MainTex_ST.xy + _MainTex_ST.zw;
                 return o;
             }
 
             float4 frag(v2f i) : SV_Target
             {
-                float4 col = tex2D(_MainTex,i.uv);
+                float4 col = tex2D(_MainTex,i.pos_uv);
                 return col;
             }
             ENDCG
