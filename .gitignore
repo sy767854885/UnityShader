@@ -11,3 +11,4 @@ UnityShader/Temp/
 *.cache
 UnityShader/Assembly-CSharp.csproj
 UnityShader/.vs/
+UnityShader/AmplifyShaderEditor.csproj
